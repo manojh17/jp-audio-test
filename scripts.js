@@ -1,29 +1,52 @@
-document.addEventListener("DOMContentLoaded", function () {
+const audio = document.getElementById("song");
+const playMessage = document.getElementById("playMessage");
 
-    const audio = document.getElementById("welcomeAudio");
-    const playButton = document.getElementById("playButton");
+let musicStarted = false;
 
-    // Try to play automatically when page loads
+function startMusic() {
+
+    if (musicStarted) {
+        return;
+    }
+
+    musicStarted = true;
+
     audio.play()
         .then(() => {
-            console.log("Audio started automatically.");
+            console.log("Music started!");
+
+            // Remove the message
+            playMessage.style.display = "none";
         })
         .catch((error) => {
-            console.log("Autoplay was blocked by the browser.");
-
-            // Show button if autoplay is blocked
-            playButton.style.display = "block";
+            console.error("Could not play audio:", error);
+            musicStarted = false;
         });
+}
 
-    // Play audio after user interaction
-    playButton.addEventListener("click", function () {
-        audio.play()
-            .then(() => {
-                playButton.style.display = "none";
-            })
-            .catch((error) => {
-                console.error("Audio playback failed:", error);
-            });
-    });
 
+// Touch
+document.addEventListener("touchstart", startMusic, {
+    once: true,
+    passive: true
+});
+
+
+// Mouse click
+document.addEventListener("click", startMusic, {
+    once: true
+});
+
+
+// Scrolling
+document.addEventListener("scroll", startMusic, {
+    once: true,
+    passive: true
+});
+
+
+// Mouse wheel
+document.addEventListener("wheel", startMusic, {
+    once: true,
+    passive: true
 });
