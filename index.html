@@ -3,16 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Auto Click</title>
+
+    <title>Touch to Play</title>
+
+    <style>
+        body {
+            margin: 0;
+            min-height: 200vh;
+            font-family: Arial, sans-serif;
+        }
+
+        .content {
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        #playMessage {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.85);
+            color: white;
+            z-index: 9999;
+            font-size: 20px;
+            text-align: center;
+        }
+    </style>
 </head>
+
 <body>
 
-    <button id="playButton">Play Audio</button>
+    <div id="playMessage">
+        Touch or scroll anywhere to start the music
+    </div>
 
-    <audio id="welcomeAudio">
-        <source src="karupu.m4a" type="audio/mpeg">
+    <div class="content">
+        <h1>Welcome</h1>
+        <p>Touch or scroll the screen to start the song.</p>
+
+        <p>Scroll down...</p>
+        <p style="margin-top: 800px;">
+            More content here
+        </p>
+    </div>
+
+    <audio id="song" preload="auto">
+        <source src="./karupu.m4a" type="audio/mp4">
     </audio>
 
     <script src="scripts.js"></script>
+
 </body>
 </html>
